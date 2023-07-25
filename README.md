@@ -1,10 +1,9 @@
 
-<align=center><size=15><b><color=#ff5500>Welcome to
-Happy Culture!</color></b></size></align>
+# Welcome to Happy Culture!
 
 This game is about Bees and flowers, and doing what you can to make your little buzzing friends happy.
 
-<b><size=15>How to play</b></size>
+## How to play
 
 - <b>Right click</b> to start dragging an item from the map
 
@@ -16,7 +15,7 @@ This game is about Bees and flowers, and doing what you can to make your little 
 
 - See <b>Buy and place</b> and <b>Trashcan</b> for additional controls
 
-<b><size=15>Your cellphone</b></size>
+## Your cellphone
 
 Everything important lies in the cellphone. There are 4 main applications you can access from there : 
 
@@ -28,21 +27,21 @@ Everything important lies in the cellphone. There are 4 main applications you ca
 
 - <b>The Wiki</b> where you can find various information about the game.
 
-<b><size=15>Bees</size></b>
+## Bees
 
 They live in beehives, and will come out if there are flowers nearby. Try to plant different type of flowers around in order to make them most happy.
 
 Bees will search for pollen for a while, and will then go back to their hives with their loot. The accumulated pollen is then turned into <b><color=#ff5500>honey</color></b> which you can harvest and use to buy stuff on your phone. 
 
-<b><size=15><color=#ffff00>CAUTION</b></size></color>
+**CAUTION**
 
 There are several ways your beehives can be damaged. It will be destroyed if it is damaged too much.
 
-<b>Your beehive will heal :</b>
+Your beehive will heal :
 
 - For each 100 honey produced
 
-<b>Your beehive will be hurt if :</b>
+Your beehive will be hurt if :
 
 - It is full and a bee tries to add more pollen
 
@@ -50,7 +49,7 @@ There are several ways your beehives can be damaged. It will be destroyed if it 
 
 - A bee comes back with bad sugar (taken from trash)
 
-<b><size=15>Trashcan</size></b>
+## Trashcan
 
 There will be a trashcan in your inventory at the start of the game. You can place it wherever you want. You can even displace it later. 
 
@@ -59,7 +58,7 @@ You can drag and drop trash in the trashcan in order to remove it from the field
 
 Dropping an item from your inventory to the trash will return the item back to your inventory.
 
-<b><size=15>Buy and Place</size></b>
+## Buy and Place
 
 You can buy stuff from the market in exchange for honey. 
 
@@ -73,7 +72,7 @@ You'll then probably want to place stuff in the field. In order to do so,
 
 3. Left click again in order to place the item.
 
-<b><size=15>Real estate</size></b>
+## Real estate
 
 You can buy more terrain from the real estate application on your phone. Beware : the more terrain you buy, the more expensive new terrains will be.
 
