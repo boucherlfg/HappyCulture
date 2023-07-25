@@ -33,15 +33,15 @@ They live in beehives, and will come out if there are flowers nearby. Try to pla
 
 Bees will search for pollen for a while, and will then go back to their hives with their loot. The accumulated pollen is then turned into <b><color=#ff5500>honey</color></b> which you can harvest and use to buy stuff on your phone. 
 
-**CAUTION**
+### CAUTION
 
 There are several ways your beehives can be damaged. It will be destroyed if it is damaged too much.
 
-Your beehive will heal :
+***Your beehive will heal :***
 
 - For each 100 honey produced
 
-Your beehive will be hurt if :
+***Your beehive will be hurt if :***
 
 - It is full and a bee tries to add more pollen
 
