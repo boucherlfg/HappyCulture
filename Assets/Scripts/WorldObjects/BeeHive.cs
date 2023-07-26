@@ -145,7 +145,7 @@ public class BeeHive : Buyable
             rend.color = Color.white;
         }
         honeyCounter -= 100;
-        currentLife++;
+        currentLife = Mathf.Min(currentLife + 1, life);
         UpdateSprite();
         StartCoroutine(ShowHeal());
     }

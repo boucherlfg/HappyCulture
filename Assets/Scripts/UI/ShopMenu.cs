@@ -25,6 +25,8 @@ public class ShopMenu : MonoBehaviour
 
         foreach (var item in Shop.Instance.itemsWithPrice)
         {
+            if (!Discovered.Instance[item.name]) continue;
+
             var instance = Instantiate(menuItem);
             var comp = instance.GetComponent<MenuItem>();
             comp.Prefab = item.gameObject;
