@@ -18,6 +18,14 @@ public class Trash : Flower
         }
         rend.color = new Color(1, 1, 1, 1);
     }
+    void Update()
+    {
+        transform.localScale = Vector3.one;
+        if (Hover)
+        {
+            transform.localScale *= 1.2f;
+        }
+    }
     public override bool IsFlowerOk(FlowerType toCheck)
     {
         return true;

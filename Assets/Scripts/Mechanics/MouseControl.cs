@@ -46,10 +46,8 @@ public class MouseControl : MonoSingleton<MouseControl>
         mainCam = Camera.main;
     }
 
-    void DoTheDragging()
+    void UpdateDraggingInfo()
     {
-        if (!dragged) return;
-
         Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dragPos = dragged.transform.position;
         var diff = pos - dragPos;
@@ -85,19 +83,35 @@ public class MouseControl : MonoSingleton<MouseControl>
             }
         }
     }
-    public void Update()
+    void StartDragging()
     {
-        DoTheDragging();
-
         Vector2 pos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        if (IsClicking(1) && !dragged)
+        
+        if (IsClicking(0))
         {
             var hit = Physics2D.OverlapPointAll(pos).FirstOrDefault(x => x.gameObject != gameObject);
+
             if (hit)
             {
-                dragged = hit.gameObject;
-                ToggleObject(dragged);
+                var item = hit.GetComponent<InventoryItem>();
+                if (!item || !item.OnClick())
+                {
+                    dragged = hit.gameObject;
+                    ToggleObject(dragged);
+                }
             }
+        }
+    }
+    public void Update()
+    {
+        
+        if (dragged)
+        {
+            UpdateDraggingInfo();
+        }
+        else
+        {
+            StartDragging();
         }
     }
 }

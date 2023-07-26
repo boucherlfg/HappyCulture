@@ -60,15 +60,11 @@ public class Bee : MonoBehaviour
     {
         if (beehive)
         {
-            if (beehive.Honey >= beehive.maxHoney)
+            if (badHoney)
             {
                 beehive.Hurt();
             }
-            else if (badHoney)
-            {
-                beehive.Hurt();
-            }
-            beehive.Honey += honey;
+            beehive.AddHoney(honey);
             
             beehive.beeCount--;
         }

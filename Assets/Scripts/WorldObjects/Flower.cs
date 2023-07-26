@@ -20,6 +20,11 @@ public class Flower : Buyable
     void Update()
     {
         if (lifetime < pollen) Destroy(gameObject);
+        transform.localScale = Vector3.one;
+        if (Hover)
+        {
+            transform.localScale *= 1.2f;
+        }
     }
     public int TakePollen()
     {

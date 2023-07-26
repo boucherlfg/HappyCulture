@@ -18,30 +18,29 @@ public class BeeHive : Buyable
     public int maxBees = 20;
     public float spawnRate = 5;
     private int honey;
-    public int Honey
+
+    public void AddHoney(int honey)
     {
-        get => honey;
-        set
+        var oldHoney = this.honey;
+        this.honey += Mathf.Min(maxHoney, this.honey + honey);
+        var diff = honey - oldHoney;
+        honeyCounter += diff;
+        Stats.Instance[Stats.Name.TotalHoney] += diff;
+        if (honeyCounter >= 100)
         {
-
-            var oldHoney = honey;
-            honey = value;
-            if (honey > maxHoney) honey = maxHoney;
-            var diff = honey - oldHoney;
-
-            honeyCounter += diff;
-            if (honeyCounter >= 100)
-            {
-                Heal();
-            }
-            else
-            {
-                UpdateSprite();
-            }
+            Heal();
         }
+        if (diff == 0)
+        {
+            Hurt();
+        }
+        UpdateSprite();
     }
+    
     public int maxHoney;
     private float honeyCounter;
+
+    public bool HasHoneyInIt => 0 < honey;
 
     [HideInInspector]
     public int beeCount;
@@ -80,40 +79,29 @@ public class BeeHive : Buyable
     void Update()
     {
         SpawnBees();
-        FullHoneyAnimation();
-
-        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && honey >= maxHoney)
-        {
-            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (Vector2.Distance(pos, transform.position) < 0.5f)
-            {
-                AudioSource.PlayClipAtPoint(gainPollen, transform.position, 0.6f);
-                Inventory.Instance.Honey += Honey;
-                Stats.Instance[Stats.Name.TotalHoney] += Honey;
-                Honey = 0;
-            }
-        }
+        Animate();
     }
     void OnDestroy()
     {
         StopAllCoroutines();
     }
-    void FullHoneyAnimation()
+    void Animate()
     {
-        if (honey < maxHoney)
+        transform.localScale = Vector3.one;
+        if (Hover)
         {
-            transform.localScale = Vector3.one;
+            transform.localScale *= 1.2f;
         }
-        else
+        else if(honey >= maxHoney)
         {
-            transform.localScale = Vector3.one + Vector3.one * Mathf.Sin(Time.time * 2 * Mathf.PI) / 4f;
+            transform.localScale += Vector3.one * Mathf.Sin(Time.time * 2 * Mathf.PI) / 4f;
         }
     }
     public void Hurt()
     {
         currentLife--;
         Stats.Instance[Stats.Name.HiveDamage]++;
-        if (life <= 0)
+        if (currentLife <= 0)
         {
             Stats.Instance[Stats.Name.HivesDestroyed]++;
             Destroy(gameObject);
@@ -121,7 +109,10 @@ public class BeeHive : Buyable
         }
 
         UpdateSprite();
-        StartCoroutine(ShowHurt());
+        if (gameObject)
+        {
+            StartCoroutine(ShowHurt());
+        }
         IEnumerator ShowHurt()
         {
             var rend = GetComponent<SpriteRenderer>();
@@ -139,9 +130,24 @@ public class BeeHive : Buyable
     }
     public void Heal()
     {
+        IEnumerator ShowHeal()
+        {
+            var rend = GetComponent<SpriteRenderer>();
+            rend.color = Color.green;
+            while (rend.color.r < 1 && rend.color.b < 1)
+            {
+                var col = rend.color;
+                col.r += Time.deltaTime;
+                col.b += Time.deltaTime;
+                rend.color = col;
+                yield return null;
+            }
+            rend.color = Color.white;
+        }
         honeyCounter -= 100;
         currentLife++;
         UpdateSprite();
+        StartCoroutine(ShowHeal());
     }
     void UpdateSprite()
     {
@@ -153,5 +159,17 @@ public class BeeHive : Buyable
         int index = x + y * this.life;
         if (index < 0 || index > hiveStates.Length - 1) return;
         GetComponent<SpriteRenderer>().sprite = hiveStates[index];
+    }
+    public override bool OnClick()
+    {
+        if (0 < honey && honey <= maxHoney)
+        {
+            AudioSource.PlayClipAtPoint(gainPollen, transform.position, 0.6f);
+            Inventory.Instance.Honey += honey;
+            honey = 0;
+            Heal();
+            return true;
+        }
+        return false;
     }
 }
