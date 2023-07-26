@@ -16,6 +16,11 @@ public class Flower : Buyable
     void Start()
     {
         Stats.Instance[Stats.Name.FlowersPlaced]++;
+        Stats.Instance[Stats.Name.CurrentFlowers]++;
+    }
+    void OnDestroy()
+    {
+        Stats.Instance[Stats.Name.CurrentFlowers]--;
     }
     void Update()
     {

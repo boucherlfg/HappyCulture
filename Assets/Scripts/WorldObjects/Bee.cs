@@ -54,6 +54,7 @@ public class Bee : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
         rbody.velocity = new Vector2(Mathf.Cos(0), Mathf.Sin(0)) * speed;
         beehive.beeCount++;
+        Stats.Instance[Stats.Name.CurrentBees]++;
         Stats.Instance[Stats.Name.BeesSpawned]++;
     }
     void OnDestroy()
@@ -65,9 +66,9 @@ public class Bee : MonoBehaviour
                 beehive.Hurt();
             }
             beehive.AddHoney(honey);
-            
             beehive.beeCount--;
         }
+        Stats.Instance[Stats.Name.CurrentBees]--;
     }
 
     // Update is called once per frame
@@ -85,12 +86,10 @@ public class Bee : MonoBehaviour
         }
         else if (isOver)
         {
-            //Debug.Log("returning to base");
             ReturnToBase();
         }
         else if (!foundFlower)
         {
-            //Debug.Log("scouting");
             Scout();
         }
         else if (pollinating)

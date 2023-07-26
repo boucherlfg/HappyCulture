@@ -113,6 +113,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 849fd320d58f9c64bb92ada9f5d660d6, type: 3}
   - {fileID: 21300000, guid: 7cc1ef6512cd84f46a80f9f6e8f5038a, type: 3}
   - {fileID: 21300000, guid: 7a856f8b6b1dc5a4f9118d5099b127a0, type: 3}
+  honeyExplosion: {fileID: 2630991797207637276, guid: 108f43395260eeb47abab298b8610ffd, type: 3}
   gainPollen: {fileID: 8300000, guid: c36f9c383e16be0459fae9a0f80eca08, type: 3}
   beePrefab: {fileID: 608603450867587873, guid: f27f97d5ba918ee40af2b89e03d774ce, type: 3}
   maxBees: 50
@@ -132,10 +133,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000672251, y: 0.43657172}
+  m_Offset: {x: -0.000672251, y: -0.03}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

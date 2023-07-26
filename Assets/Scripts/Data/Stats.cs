@@ -14,8 +14,10 @@ public class Stats : MonoSingleton<Stats>
         TotalHoney = 4, 
         HoneyPerMinute = 5, 
         HiveDamage = 6, 
-        TrashPicked = 7
-
+        TrashPicked = 7,
+        CurrentHive = 8,
+        CurrentBees = 9,
+        CurrentFlowers = 10
     }
     public event System.Action Changed;
 

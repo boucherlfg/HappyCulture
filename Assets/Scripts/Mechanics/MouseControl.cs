@@ -15,6 +15,7 @@ public class MouseControl : MonoSingleton<MouseControl>
 
     private Camera mainCam;
     private GameObject dragged;
+    public GameObject Dragged => dragged;
     private bool fromInventory = false;
 
     private bool IsClicking(int button)
@@ -34,6 +35,16 @@ public class MouseControl : MonoSingleton<MouseControl>
         dragged = Instantiate(toDrag, position, Quaternion.identity);
         dragged.name = toDrag.name;
         ToggleObject(dragged);
+    }
+    public void Trash()
+    {
+        if (fromInventory)
+        {
+            Inventory.Instance.Add(Database.Instance.items.Find(x => x.name == dragged.name));
+            fromInventory = false;
+        }
+        Destroy(dragged);
+        dragged = null;
     }
 
     void ToggleObject(GameObject obj)
@@ -69,17 +80,11 @@ public class MouseControl : MonoSingleton<MouseControl>
                 ToggleObject(dragged);
                 dragged = null;
             }
-            else if(trashcan)
+            else if (trashcan)
             {
-                if (fromInventory)
-                {
-                    Inventory.Instance.Add(Database.Instance.items.Find(x => x.name == dragged.name));
-                    fromInventory = false;
-                }
-                Destroy(dragged);
-                dragged = null;
+                Trash();
                 AudioSource.PlayClipAtPoint(trashSound, trashcan.transform.position, 1);
-                
+
             }
         }
     }

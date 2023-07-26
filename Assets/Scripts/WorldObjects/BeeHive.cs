@@ -12,33 +12,30 @@ public class BeeHive : Buyable
 
     [SerializeField]
     private Sprite[] hiveStates;
-    
+    public GameObject honeyExplosion;
     public AudioClip gainPollen;
     public GameObject beePrefab;
     public int maxBees = 20;
     public float spawnRate = 5;
     private int honey;
+    public int maxHoney;
 
     public void AddHoney(int honey)
     {
         var oldHoney = this.honey;
-        this.honey += Mathf.Min(maxHoney, this.honey + honey);
-        var diff = honey - oldHoney;
-        honeyCounter += diff;
+
+        this.honey = Mathf.Min(maxHoney, this.honey + honey);
+        
+        var diff = this.honey - oldHoney;
         Stats.Instance[Stats.Name.TotalHoney] += diff;
-        if (honeyCounter >= 100)
-        {
-            Heal();
-        }
-        if (diff == 0)
+
+        if (diff == 0 && honey > 0)
         {
             Hurt();
         }
         UpdateSprite();
     }
     
-    public int maxHoney;
-    private float honeyCounter;
 
     public bool HasHoneyInIt => 0 < honey;
 
@@ -74,6 +71,7 @@ public class BeeHive : Buyable
     {
         currentLife = life;
         Stats.Instance[Stats.Name.HivesPlaced]++;
+        Stats.Instance[Stats.Name.CurrentHive]++;
     }
     // Update is called once per frame
     void Update()
@@ -83,6 +81,7 @@ public class BeeHive : Buyable
     }
     void OnDestroy()
     {
+        Stats.Instance[Stats.Name.CurrentHive]--;
         StopAllCoroutines();
     }
     void Animate()
@@ -144,7 +143,6 @@ public class BeeHive : Buyable
             }
             rend.color = Color.white;
         }
-        honeyCounter -= 100;
         currentLife = Mathf.Min(currentLife + 1, life);
         UpdateSprite();
         StartCoroutine(ShowHeal());
@@ -156,16 +154,21 @@ public class BeeHive : Buyable
         int x = 3 * life / (this.life);
         int y = 4 * honey / maxHoney;
 
-        int index = x + y * this.life;
+        x = Mathf.Min(x, 3);
+        y = Mathf.Min(y, 4);
+
+        int index = x + y * 3;
         if (index < 0 || index > hiveStates.Length - 1) return;
         GetComponent<SpriteRenderer>().sprite = hiveStates[index];
     }
     public override bool OnClick()
     {
-        if (0 < honey && honey <= maxHoney)
+        float multiplier = currentLife / (float)life;
+        if (0 < honey)
         {
             AudioSource.PlayClipAtPoint(gainPollen, transform.position, 0.6f);
-            Inventory.Instance.Honey += honey;
+            Inventory.Instance.Honey += (int)(multiplier * honey);
+            Instantiate(honeyExplosion, transform.position, Quaternion.identity);
             honey = 0;
             Heal();
             return true;

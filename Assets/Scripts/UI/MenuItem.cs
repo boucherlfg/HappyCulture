@@ -41,6 +41,10 @@ public class MenuItem : MonoBehaviour
     {
         Inventory.Instance.Remove(Prefab.GetComponent<InventoryItem>());
         var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (MouseControl.Instance.Dragged)
+        {
+            MouseControl.Instance.Trash();
+        }
         MouseControl.Instance.Drag(Prefab, position);
     }
     public void PlaySound()
