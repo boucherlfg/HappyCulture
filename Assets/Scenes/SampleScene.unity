@@ -1607,7 +1607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &211200653
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2184,7 +2184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 84.32126, y: -951.601}
+  m_AnchoredPosition: {x: 84.32126, y: -864.786}
   m_SizeDelta: {x: 160, y: 1723.572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &352728483
@@ -2209,26 +2209,29 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\r\n<align=center><size=15><b><color=#ff5500>Welcome to\nHappy Culture!</color></b></size></align>\r\n\r\nThis
     game is about Bees and flowers, and doing what you can to make your little buzzing
-    friends happy.\r\n\r\n<b><size=15>How to play</b></size>\r\n\r\n- <b>Right click</b>
+    friends happy.\r\n\r\n<b><size=15>How to play</b></size>\r\n\r\n- <b>Left click</b>
     to start dragging an item from the map\n\n- <b>Left click</b> while dragging
     an object to place it.\n\n- <b>Hold middle click</b> to drag camera around\r\n\n-
     <b>Scroll mouse</b> to zoom in and out\r\n\n- See <b>Buy and place</b> and <b>Trashcan</b>
     for additional controls\r\n\r\n<b><size=15>Your cellphone</b></size>\r\n\r\nEverything
-    important lies in the cellphone. There are 4 main applications you can access
+    important lies in the cellphone. There are 7 main applications you can access
     from there : \r\n\r\n- <b>Shop</b> where you can buy fancy flowers and new beehives.\r\n\n-
     <b>Inventory</b> where all your items lie, waiting to be placed in the world.\r\n\n-
     <b>Real estate market</b> where you can buy more terrain.\r\n\n- <b>The Wiki</b>
-    where you can find various information about the game.\r\n\r\n<b><size=15>Bees</size></b>\r\n\r\nThey
-    live in beehives, and will come out if there are flowers nearby. Try to plant
-    different type of flowers around in order to make them most happy.\r\n\r\nBees
-    will search for pollen for a while, and will then go back to their hives with
-    their loot. The accumulated pollen is then turned into <b><color=#ff5500>honey</color></b>
-    which you can harvest and use to buy stuff on your phone. \r\n\n<b><size=15><color=#ffff00>CAUTION</b></size></color>\n\nThere
+    where you can find various information about the game.\r\n\n- <b>Settings</b>
+    where you can change the behaviour of some aspects of the game.\n\n- <b>Stats
+    board</b> where you can see your progression.\n\n- <b>Power off</b> where you
+    can restart or close the game.\n\r\n<b><size=15>Bees</size></b>\r\n\r\nThey live
+    in beehives, and will come out if there are flowers nearby. Try to plant different
+    type of flowers around in order to make them most happy.\r\n\r\nBees will search
+    for pollen for a while, and will then go back to their hives with their loot.
+    The accumulated pollen is then turned into <b><color=#ff8800>honey</color></b>
+    which you can in turn harvest and use to buy stuff on your phone. \r\n\n<b><size=15><color=#ffff00>CAUTION</b></size></color>\n\nThere
     are several ways your beehives can be damaged. It will be destroyed if it is
-    damaged too much.\n\n<b>Your beehive will heal :</b>\n\n- For each 100 honey
-    produced\n\n<b>Your beehive will be hurt if :</b>\n\n- It is full and a bee tries
-    to add more pollen\n\n- There are no flowers nearby for too long\n\n- A bee comes
-    back with bad sugar (taken from trash)\n\n<b><size=15>Trashcan</size></b>\n\nThere
+    damaged too much.\n\n<b>Your beehive will heal :</b>\n\n- Each time you harvest
+    honey from it.\n\n<b>Your beehive will be hurt if :</b>\n\n- It is full and a
+    bee tries to add more pollen\n\n- There are no flowers nearby for too long\n\n-
+    A bee comes back with bad sugar (taken from trash)\n\n<b><size=15>Trashcan</size></b>\n\nThere
     will be a trashcan in your inventory at the start of the game. You can place
     it wherever you want. You can even displace it later. \n\n\rYou can drag and
     drop trash in the trashcan in order to remove it from the field. If you don't
@@ -2239,7 +2242,7 @@ MonoBehaviour:
     arrow, and go to your inventory. You will be able to see your newly aquired items
     there. \r\n\r\nYou'll then probably want to place stuff in the field. In order
     to do so, \n\n1. Click on the item you want to take from your inventory\n\n2.
-    Drag them to the position where you want it to be\n\n3. Left click again in order
+    Drag it to the position where you want it to be\n\n3. Left click again in order
     to place the item.\n\r\n<b><size=15>Real estate</size></b>\r\n\r\nYou can buy
     more terrain from the real estate application on your phone. Beware : the more
     terrain you buy, the more expensive new terrains will be.\r\n\r\nOnce you buy
@@ -4059,9 +4062,9 @@ RectTransform:
   m_Father: {fileID: 2062939125}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 85, y: -19}
   m_SizeDelta: {x: 38, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809689963
@@ -5696,9 +5699,9 @@ RectTransform:
   m_Father: {fileID: 2062939125}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 28.333332, y: -19}
   m_SizeDelta: {x: 38, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028639515
@@ -6858,7 +6861,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 87.815}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1296846857
 MonoBehaviour:
@@ -9137,9 +9140,9 @@ RectTransform:
   m_Father: {fileID: 2062939125}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 141.66666, y: -19}
   m_SizeDelta: {x: 38, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1841356059
