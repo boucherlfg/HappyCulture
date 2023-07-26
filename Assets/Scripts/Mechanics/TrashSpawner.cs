@@ -11,6 +11,7 @@ public class TrashSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Settings.Instance.PeaceMode) return;
         spawnCounter += Time.deltaTime;
         if (spawnCounter < spawnInterval) return;
 

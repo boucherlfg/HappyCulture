@@ -49,7 +49,6 @@ public class MenuItem : MonoBehaviour
     }
     public void PlaySound()
     {
-        var sound = Camera.main.GetComponentInChildren<AudioSource>();
-        sound.PlayOneShot(clickSound);
+        Sound.Instance.PlayOnce(clickSound);
     }
 }

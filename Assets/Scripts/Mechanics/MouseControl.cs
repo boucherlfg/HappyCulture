@@ -83,7 +83,7 @@ public class MouseControl : MonoSingleton<MouseControl>
             else if (trashcan)
             {
                 Trash();
-                AudioSource.PlayClipAtPoint(trashSound, trashcan.transform.position, 1);
+                Sound.Instance.PlayOnce(trashSound, 0.2f);
 
             }
         }

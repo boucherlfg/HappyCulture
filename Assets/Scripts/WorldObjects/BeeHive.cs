@@ -98,6 +98,7 @@ public class BeeHive : Buyable
     }
     public void Hurt()
     {
+        if (Settings.Instance.PeaceMode) return;
         currentLife--;
         Stats.Instance[Stats.Name.HiveDamage]++;
         if (currentLife <= 0)
@@ -129,6 +130,7 @@ public class BeeHive : Buyable
     }
     public void Heal()
     {
+        if (Settings.Instance.PeaceMode) return;
         IEnumerator ShowHeal()
         {
             var rend = GetComponent<SpriteRenderer>();
@@ -166,7 +168,7 @@ public class BeeHive : Buyable
         float multiplier = currentLife / (float)life;
         if (0 < honey)
         {
-            AudioSource.PlayClipAtPoint(gainPollen, transform.position, 0.6f);
+            Sound.Instance.PlayOnce(gainPollen, 0.2f);
             Inventory.Instance.Honey += (int)(multiplier * honey);
             Instantiate(honeyExplosion, transform.position, Quaternion.identity);
             honey = 0;

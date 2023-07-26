@@ -35,18 +35,11 @@ public class Stats : MonoSingleton<Stats>
     IEnumerator Start()
     {
         int lastTotal = this[Name.TotalHoney];
-        int[] honeywins = new int[60];
-        int i = 0;
         while (true)
         {
-            yield return new WaitForSeconds(1);
-            i++;
-            i %= 60;
-            int newTotal = this[Name.TotalHoney];
-            int diff = newTotal - lastTotal;
-            lastTotal = newTotal;
-            if (diff >= 0) honeywins[i] = diff;
-            this[Name.HoneyPerMinute] = honeywins.Sum() / 60;
+            yield return new WaitForSeconds(60);
+            this[Name.HoneyPerMinute] = this[Name.TotalHoney] - lastTotal;
+            lastTotal = this[Name.TotalHoney];
         }
     }
     public int this[Name name]
