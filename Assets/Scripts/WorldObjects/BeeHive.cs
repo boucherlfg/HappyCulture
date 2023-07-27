@@ -19,6 +19,7 @@ public class BeeHive : Buyable
     public float spawnRate = 5;
     private int honey;
     public int maxHoney;
+    public float FillRatio => honey / (float)maxHoney;
 
     public void AddHoney(int honey)
     {
@@ -98,39 +99,45 @@ public class BeeHive : Buyable
     }
     public void Hurt()
     {
-        if (Settings.Instance.PeaceMode) return;
-        currentLife--;
-        Stats.Instance[Stats.Name.HiveDamage]++;
-        if (currentLife <= 0)
+        if (!Settings.Instance.PeaceMode)
         {
-            Stats.Instance[Stats.Name.HivesDestroyed]++;
-            Destroy(gameObject);
-            return;
-        }
-
-        UpdateSprite();
-        if (gameObject)
-        {
-            StartCoroutine(ShowHurt());
-        }
-        IEnumerator ShowHurt()
-        {
-            var rend = GetComponent<SpriteRenderer>();
-            rend.color = Color.red;
-            while (rend.color.g < 1 && rend.color.b < 1)
+            currentLife--;
+            Stats.Instance[Stats.Name.HiveDamage]++;
+            if (currentLife <= 0)
             {
-                var col = rend.color;
-                col.g += Time.deltaTime;
-                col.b += Time.deltaTime;
-                rend.color = col;
-                yield return null;
+                Stats.Instance[Stats.Name.HivesDestroyed]++;
+                Destroy(gameObject);
+                return;
             }
-            rend.color = Color.white;
+            if (gameObject)
+            {
+                StartCoroutine(ShowHurt());
+            }
+            IEnumerator ShowHurt()
+            {
+                var rend = GetComponent<SpriteRenderer>();
+                rend.color = Color.red;
+                while (rend.color.g < 1 && rend.color.b < 1)
+                {
+                    var col = rend.color;
+                    col.g += Time.deltaTime;
+                    col.b += Time.deltaTime;
+                    rend.color = col;
+                    yield return null;
+                }
+                rend.color = Color.white;
+            }
         }
+        UpdateSprite();
+        
     }
     public void Heal()
     {
-        if (Settings.Instance.PeaceMode) return;
+        if (!Settings.Instance.PeaceMode)
+        {
+            currentLife = Mathf.Min(currentLife + 1, life);
+
+        }
         IEnumerator ShowHeal()
         {
             var rend = GetComponent<SpriteRenderer>();
@@ -145,9 +152,8 @@ public class BeeHive : Buyable
             }
             rend.color = Color.white;
         }
-        currentLife = Mathf.Min(currentLife + 1, life);
-        UpdateSprite();
         StartCoroutine(ShowHeal());
+        UpdateSprite();
     }
     void UpdateSprite()
     {
