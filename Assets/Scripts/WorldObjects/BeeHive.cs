@@ -157,15 +157,18 @@ public class BeeHive : Buyable
     }
     void UpdateSprite()
     {
+        const int width = 3;
+        const int height = 4;
+
         int life = this.currentLife - 1;
 
-        int x = 3 * life / (this.life);
-        int y = 4 * honey / maxHoney;
+        int x = width * life / (this.life);
+        int y = height * honey / maxHoney;
 
-        x = Mathf.Min(x, 3);
-        y = Mathf.Min(y, 4);
+        x = Mathf.Min(x, width);
+        y = Mathf.Min(y, height);
 
-        int index = x + y * 3;
+        int index = x + y * width;
         if (index < 0 || index > hiveStates.Length - 1) return;
         GetComponent<SpriteRenderer>().sprite = hiveStates[index];
     }
