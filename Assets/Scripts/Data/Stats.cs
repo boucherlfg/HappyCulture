@@ -3,6 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+[CustomEditor(typeof(Stats))]
+public class StatsEditor : Editor
+{
+    private Stats.Name statName;
+    private int value;
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        var targ = target as Stats;
+
+        statName = (Stats.Name)EditorGUILayout.EnumPopup(statName);
+        value = EditorGUILayout.IntField(value);
+        if (GUILayout.Button("Set"))
+        {
+            Stats.Instance[statName] = value;
+        }
+    }
+}
+#endif
+
 public class Stats : MonoSingleton<Stats>
 {
     public enum Name

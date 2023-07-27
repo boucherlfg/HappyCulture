@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 500
+  unlockConditions: []
   life: 3
   hiveStates:
   - {fileID: 21300000, guid: 448239bc1cea2aa458584c4e3cad3943, type: 3}

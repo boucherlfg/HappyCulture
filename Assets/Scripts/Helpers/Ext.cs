@@ -4,6 +4,38 @@ using UnityEngine;
 
 public static class Ext
 {
+    public static Vector2 FindValidPosition(Vector2 origin, float radius)
+    {
+        var bounds = Map.Instance.SquareBound;
+        Vector2 whereToSpawn;
+
+        for (int _ = 0; _ < 1000; _++)
+        {
+            whereToSpawn = origin + Random.insideUnitCircle * radius;
+
+            if (!Map.Instance.Contains(whereToSpawn)) continue;
+            if (Physics2D.OverlapPoint(whereToSpawn)) continue;
+            return whereToSpawn;
+        }
+        throw new System.Exception("cant find valid point");
+    }
+    public static Vector2 FindValidPosition()
+    {
+        var bounds = Map.Instance.SquareBound;
+        Vector2 whereToSpawn;
+
+        for (int _ = 0; _ < 1000; _++)
+        {
+            float x = Random.Range(bounds.min.x, bounds.max.x);
+            float y = Random.Range(bounds.min.y, bounds.max.y);
+            whereToSpawn = new Vector2(x, y);
+
+            if (!Map.Instance.Contains(whereToSpawn)) continue;
+            if (Physics2D.OverlapPoint(whereToSpawn)) continue;
+            return whereToSpawn;
+        }
+        throw new System.Exception("cant find valid point");
+    }
     public static T[] GetEnumAsArray<T>() where T : System.Enum
     {
         return System.Enum.GetValues(typeof(T)).Cast<T>().ToArray();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Robot : MonoBehaviour
+public class Robot : Buyable
 {
     public const string robot_left = nameof(robot_left),
                         robot_right = nameof(robot_right),

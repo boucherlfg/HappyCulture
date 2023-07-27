@@ -26,10 +26,10 @@ public class Discovered : MonoSingleton<Discovered>
         }
         foreach (var item in Shop.Instance.itemsWithPrice.Distinct())
         {
-            if (Inventory.Instance.Honey >= item.price)
-            {
-                Add(item.name);
-            }
+            if (Inventory.Instance.Honey < item.price) continue;
+            if (item.unlockConditions.Exists(x => Stats.Instance[x.name] < x.qty)) continue;
+         
+            Add(item.name);
         }
     }
 }

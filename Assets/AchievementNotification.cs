@@ -24,7 +24,7 @@ public class AchievementNotification : MonoSingleton<AchievementNotification>
         
         mainGameObject.SetActive(true);
         image.sprite = ach.sprite;
-        label.text = "achievement " + ach.name + " unlocked!";
+        label.text = "achievement unlocked<br><i>" + ach.name + "</i>";
         StartCoroutine(DeactivateAfterTime());
         
         IEnumerator DeactivateAfterTime()
