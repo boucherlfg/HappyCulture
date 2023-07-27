@@ -8,6 +8,7 @@ public class AchievementsMenu : MonoBehaviour
     void OnEnable()
     {
         Achievements.Instance.Changed += Refresh;
+        Refresh(null);
     }
 
     private void Refresh(Achievement achievement)

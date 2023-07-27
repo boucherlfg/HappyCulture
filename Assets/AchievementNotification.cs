@@ -19,6 +19,7 @@ public class AchievementNotification : MonoSingleton<AchievementNotification>
 
     private void Instance_Changed(Achievement ach)
     {
+        if (!this) return;
         StopAllCoroutines();
         grp.alpha = 1;
         
