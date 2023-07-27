@@ -30,7 +30,7 @@ public class Trash : Flower
     {
         return true;
     }
-    public void OnDestroy()
+    protected override void OnDestroy()
     {
         Stats.Instance[Stats.Name.TrashPicked]++;
     }

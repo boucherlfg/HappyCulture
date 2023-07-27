@@ -18,7 +18,7 @@ public class Flower : Buyable
         Stats.Instance[Stats.Name.FlowersPlaced]++;
         Stats.Instance[Stats.Name.CurrentFlowers]++;
     }
-    void OnDestroy()
+    protected virtual void OnDestroy()
     {
         Stats.Instance[Stats.Name.CurrentFlowers]--;
     }

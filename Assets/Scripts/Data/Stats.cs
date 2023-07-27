@@ -13,8 +13,6 @@ public class StatsEditor : Editor
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        var targ = target as Stats;
-
         statName = (Stats.Name)EditorGUILayout.EnumPopup(statName);
         value = EditorGUILayout.IntField(value);
         if (GUILayout.Button("Set"))
@@ -69,7 +67,7 @@ public class Stats : MonoSingleton<Stats>
         get => values[name];
         set
         {
-            values[name] = value;
+            values[name] = Mathf.Min(value, 99999);
             Changed?.Invoke();
         }
     }
