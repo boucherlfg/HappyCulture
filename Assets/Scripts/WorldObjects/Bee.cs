@@ -94,12 +94,10 @@ public class Bee : MonoBehaviour
         }
         else if (pollinating)
         {
-            //Debug.Log("pollinating");
             Pollinate();
         }
         else
         {
-            //Debug.Log("moving towards");
             MoveTowards();
         }
         Animate();
