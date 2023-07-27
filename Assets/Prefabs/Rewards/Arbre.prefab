@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4358aacbbbebe4397c272561cb5797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeOnFirstBuy: 0
   price: 1000
   unlockConditions:
   - name: 1
@@ -145,4 +146,4 @@ MonoBehaviour:
   - {fileID: 3727880068391513653, guid: 43c3f836ee4c22d468e7f4b206fa3ce4, type: 3}
   - {fileID: 3727880068391513653, guid: 315e81bd983622545973edcc9d5359da, type: 3}
   spawnInterval: 60
-  flowerSpawnRange: 0
+  flowerSpawnRange: 5

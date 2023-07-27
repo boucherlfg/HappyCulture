@@ -11,6 +11,7 @@ public class Tree : Buyable
     void Update()
     {
         SpawnFlowers();
+        UpdateScale();
     }
 
     void SpawnFlowers()

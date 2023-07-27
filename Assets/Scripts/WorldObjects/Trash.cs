@@ -20,11 +20,7 @@ public class Trash : Flower
     }
     void Update()
     {
-        transform.localScale = Vector3.one;
-        if (Hover)
-        {
-            transform.localScale *= 1.2f;
-        }
+        UpdateScale();
     }
     public override bool IsFlowerOk(FlowerType toCheck)
     {

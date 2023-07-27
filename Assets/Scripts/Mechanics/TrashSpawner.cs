@@ -22,7 +22,8 @@ public class TrashSpawner : MonoBehaviour
     {
         Vector2 whereToSpawn = FindValidPosition();
         var toSpawn = trash.PickRandom();
-        Instantiate(toSpawn, whereToSpawn, Quaternion.identity);
+        var instance = Instantiate(toSpawn, whereToSpawn, Quaternion.identity);
+        instance.transform.SetParent(transform);
     }
     /// <summary>
     /// find a point that is in bounds and not over something else

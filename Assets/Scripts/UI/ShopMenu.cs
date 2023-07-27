@@ -8,10 +8,12 @@ public class ShopMenu : MonoBehaviour
 {
     void OnDisable()
     {
+        Shop.Instance.Count.Changed -= Refresh;
         Inventory.Instance.Changed -= Refresh;
     }
     void OnEnable()
     {
+        Shop.Instance.Count.Changed += Refresh;
         Inventory.Instance.Changed += Refresh;
         Refresh();
     }
@@ -26,15 +28,15 @@ public class ShopMenu : MonoBehaviour
         foreach (var item in Shop.Instance.itemsWithPrice)
         {
             if (!Discovered.Instance[item.name]) continue;
-
+            int price = item.Price;
             var instance = Instantiate(menuItem);
             var comp = instance.GetComponent<MenuItem>();
             comp.Prefab = item.gameObject;
-            comp.Count = item.price;
+            comp.Count = price;
             comp.Sprite = comp.Prefab.GetComponent<SpriteRenderer>().sprite;
 
             var button = instance.GetComponent<Button>();
-            button.interactable = Inventory.Instance.Honey >= item.price;
+            button.interactable = Inventory.Instance.Honey >= price;
             instance.transform.SetParent(transform); 
             instance.transform.localScale = Vector3.one;
         }

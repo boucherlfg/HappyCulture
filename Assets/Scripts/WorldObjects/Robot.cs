@@ -70,6 +70,7 @@ public class Robot : Buyable
             anim.SetFloat("vx", rbody.velocity.x);
             anim.SetFloat("vy", rbody.velocity.y);
         }
+        UpdateScale();
     }
 
     

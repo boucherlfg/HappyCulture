@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ff404a1b7decc49bae277a715129d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeOnFirstBuy: 1
   price: 150
   unlockConditions: []
   life: 3

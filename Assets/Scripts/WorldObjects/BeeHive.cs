@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class BeeHive : Buyable
 {
@@ -78,14 +76,14 @@ public class BeeHive : Buyable
     void Update()
     {
         SpawnBees();
-        Animate();
+        UpdateScale();
     }
     void OnDestroy()
     {
         Stats.Instance[Stats.Name.CurrentHive]--;
         StopAllCoroutines();
     }
-    void Animate()
+    protected override void UpdateScale()
     {
         transform.localScale = Vector3.one;
         if (Hover)

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f146597c893f140a77d6aa93e29b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeOnFirstBuy: 1
   price: 25
   unlockConditions: []
   pollen: 1

@@ -32,19 +32,14 @@ public class MenuItem : MonoBehaviour
             count = value;
         }
     }
-    public void Buy()
-    {
-        Inventory.Instance.Add(Prefab.GetComponent<InventoryItem>());
-        Inventory.Instance.Honey -= count;
-    }
     public void Place()
     {
-        Inventory.Instance.Remove(Prefab.GetComponent<InventoryItem>());
+        Inventory.Instance.Honey -= count;
+
+        Shop.Instance.Count[Prefab.name]++;
+        
         var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (MouseControl.Instance.Dragged)
-        {
-            MouseControl.Instance.Trash();
-        }
+        
         MouseControl.Instance.Drag(Prefab, position);
     }
     public void PlaySound()

@@ -6,13 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class Bee : MonoBehaviour
 {
+    public static List<Bee> all = new List<Bee>();
     #region [physics]
+    private float speedBoost = 1;
     public float speed = 3;
     public float turnSpeed = 1;
     public float wallDetection = 3;
     private Rigidbody2D rbody;
     private SpriteRenderer rend;
-    private Vector2 target;
+    private Flower target;
     private float dirX = 1;
     #endregion
 
@@ -24,10 +26,10 @@ public class Bee : MonoBehaviour
     #endregion
 
     #region [logic]
-    private bool foundFlower;
+    private bool foundFlower => target;
     private bool isFleeing = false;
     private bool isOver => lifeTimeCounter >= lifeTime || badHoney;
-    private bool pollinating => Vector2.Distance(target, transform.position) < 0.5
+    private bool pollinating => foundFlower && Vector2.Distance(target.transform.position, transform.position) < 0.5
                              && pollinateTimeCounter < pollinateTime;
     private bool isAtBase => beehive && Vector2.Distance(beehive.transform.position, transform.position) < 0.5
                              && isOver;
@@ -48,9 +50,14 @@ public class Bee : MonoBehaviour
     public List<FlowerAuraPair> flowerAuraPairs;
     #endregion
 
+    public void GetSpeedBoost(float multiplier)
+    {
+        speedBoost = multiplier;
+    }
     // Start is called before the first frame update
     void Start()
     {
+        all.Add(this);
         ChooseFlower();
         rbody = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
@@ -61,6 +68,7 @@ public class Bee : MonoBehaviour
     }
     void OnDestroy()
     {
+        all.Remove(this);
         if (beehive)
         {
             if (badHoney)
@@ -76,6 +84,9 @@ public class Bee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var regularSpeed = speed;
+        speed = regularSpeed * speedBoost;
+        
         lifeTimeCounter += Time.deltaTime;
 
         if (!beehive)
@@ -103,6 +114,9 @@ public class Bee : MonoBehaviour
             MoveTowards();
         }
         Animate();
+
+        speedBoost = 1;
+        speed = regularSpeed;
     }
     void Animate()
     {
@@ -126,8 +140,7 @@ public class Bee : MonoBehaviour
         {
             var pos = transform.position;
             float dist(Vector2 other) => Vector2.Distance(pos, other);
-            target = flowers.Minimum(x => dist(x.transform.position)).transform.position;
-            foundFlower = true;
+            target = flowers.Minimum(x => dist(x.transform.position));
         }
     }
     void Flee()
@@ -145,7 +158,7 @@ public class Bee : MonoBehaviour
     void MoveTowards()
     {
         var rand = GetRandomVector() * 0.01f;
-        var dir = GetVectorTowards(target);
+        var dir = GetVectorTowards(target.transform.position);
         var avoid = GetAvoidanceVector();
         rbody.velocity = (rand + dir + avoid).normalized * speed;
     }
@@ -164,20 +177,17 @@ public class Bee : MonoBehaviour
 
         //deactivate all aura except right colour
         foreach (var pair in flowerAuraPairs) pair.aura.SetActive(flowerAuraPair.flowerType == pair.flowerType);
-        foundFlower = false;
     }
     void Pollinate()
     {
-        
         MoveTowards();
         pollinateTimeCounter += Time.deltaTime;
         if (pollinateTimeCounter < pollinateTime) return;
         pollinateTimeCounter = 0;
 
-        var flower = Physics2D.OverlapPointAll(target).FirstOrDefault(x => x.GetComponent<Flower>());
-        if (flower)
+        if (target)
         {
-            var comp = flower.GetComponent<Flower>();
+            var comp = target.GetComponent<Flower>();
             if (comp)
             {
                 Instantiate(pollenEffect, transform.position, Quaternion.identity);
@@ -185,7 +195,9 @@ public class Bee : MonoBehaviour
                 badHoney = comp is Trash;
             }
         }
+        target = null;
         ChooseFlower();
+        
     }
     #endregion
 

@@ -31,6 +31,10 @@ public class MouseControl : MonoSingleton<MouseControl>
     }
     public void Drag(GameObject toDrag, Vector2 position)
     {
+        if (Dragged)
+        {
+            Trash();
+        }
         fromInventory = true;
         dragged = Instantiate(toDrag, position, Quaternion.identity);
         dragged.name = toDrag.name;
@@ -40,7 +44,8 @@ public class MouseControl : MonoSingleton<MouseControl>
     {
         if (fromInventory)
         {
-            Inventory.Instance.Add(Database.Instance.items.Find(x => x.name == dragged.name));
+            var buyable = dragged.GetComponent<Buyable>();
+            Shop.Instance.Buyback(buyable);
             fromInventory = false;
         }
         Destroy(dragged);

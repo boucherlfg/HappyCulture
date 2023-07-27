@@ -13,6 +13,14 @@ public abstract class InventoryItem : MonoBehaviour
     {
         return false;
     }
+    protected virtual void UpdateScale()
+    {
+        transform.localScale = Vector3.one;
+        if (Hover)
+        {
+            transform.localScale *= 1.2f;
+        }
+    }
     public bool Hover 
     {
         get

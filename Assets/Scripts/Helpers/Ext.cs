@@ -4,6 +4,36 @@ using UnityEngine;
 
 public static class Ext
 {
+    public static void MinInsert<T>(this List<T> list, T element) where T : ICompared<T>
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            var comp = list[i];
+            if (comp.CompareTo(element) < 0) continue;
+            list.Insert(i, element);
+            return;
+        }
+        list.Insert(list.Count, element);
+    }
+    public static bool Approx(this float me, float other) => Mathf.Abs(me - other) < 0.001f;
+    public static bool Approx(this Vector2 me, Vector2 other) => Vector2.Distance(me, other).Approx(0);
+    public static bool Approx(this Vector3 me, Vector3 other) => Vector2.Distance(me, other).Approx(0);
+    public static Vector2 RoundToMultiple(this Vector2 vector, float multiple)
+    {
+        vector.x = vector.x.RoundToMultiple(multiple);
+        vector.y = vector.y.RoundToMultiple(multiple);
+        return vector;
+    }
+    public static float RoundToMultiple(this float number, float multiple)
+    {
+        var result = Mathf.Abs(number) + multiple / 2f;
+        result -= result % multiple;
+        return result * Mathf.Sign(number);
+    }
+    public interface ICompared<T>
+    {
+        int CompareTo(T element);
+    }
     public static Vector2 FindValidPosition(Vector2 origin, float radius)
     {
         var bounds = Map.Instance.SquareBound;
