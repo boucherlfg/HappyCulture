@@ -25,6 +25,9 @@ public class Flower : Buyable
     void Update()
     {
         UpdateScale();
+		if(lifetime <= 0) {
+			Destroy(gameObject);
+		}
     }
     public int TakePollen()
     {
