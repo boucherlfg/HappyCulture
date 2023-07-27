@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ff404a1b7decc49bae277a715129d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 500
-  life: 3
+  price: 1000
+  unlockConditions: []
+  life: 8
   hiveStates:
   - {fileID: 21300000, guid: 91c80484e9acf644eaa88b2f30712fe2, type: 3}
   - {fileID: 21300000, guid: 0a471f65b5644244182c4e9a3211db2b, type: 3}

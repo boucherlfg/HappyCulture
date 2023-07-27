@@ -2414,7 +2414,7 @@ MonoBehaviour:
     type of flowers around in order to make them most happy.\r\n\r\nBees will search
     for pollen for a while, and will then go back to their hives with their loot.
     The accumulated pollen is then turned into <b><color=#ff8800>honey</color></b>
-    which you can in turn harvest and use to buy stuff on your phone. \r\n\n<b><size=15><color=#ffff00>CAUTION</b></size></color>\n\nThere
+    which you can in turn harvest and use to buy stuff on your phone. \r\n\n<b><size=15><color=#ff5500>CAUTION</b></size></color>\n\nThere
     are several ways your beehives can be damaged. It will be destroyed if it is
     damaged too much.\n\n<b>Your beehive will heal :</b>\n\n- Each time you harvest
     honey from it.\n\n<b>Your beehive will be hurt if :</b>\n\n- It is full and a

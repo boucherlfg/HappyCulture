@@ -25,19 +25,20 @@ public class Bee : MonoBehaviour
 
     #region [logic]
     private bool foundFlower;
+    private bool isFleeing = false;
     private bool isOver => lifeTimeCounter >= lifeTime || badHoney;
     private bool pollinating => Vector2.Distance(target, transform.position) < 0.5
                              && pollinateTimeCounter < pollinateTime;
     private bool isAtBase => beehive && Vector2.Distance(beehive.transform.position, transform.position) < 0.5
                              && isOver;
+    private bool badHoney;
     #endregion
 
+    #region flowers
     public BeeHive beehive;
     public GameObject pollenEffect;
     private int honey;
     private FlowerType flowerType;
-    private bool badHoney;
-    private bool isFleeing = false;
     [System.Serializable]
     public struct FlowerAuraPair
     {
@@ -45,6 +46,7 @@ public class Bee : MonoBehaviour
         public GameObject aura;
     }
     public List<FlowerAuraPair> flowerAuraPairs;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +109,8 @@ public class Bee : MonoBehaviour
         rend.flipX = dirX < 0.2f;
         dirX = rbody.velocity.x;
     }
+
+    #region AI methods
     void Scout()
     {
         var rand = GetRandomVector();
@@ -183,6 +187,7 @@ public class Bee : MonoBehaviour
         }
         ChooseFlower();
     }
+    #endregion
 
     Vector2 GetAvoidanceVector()
     {
