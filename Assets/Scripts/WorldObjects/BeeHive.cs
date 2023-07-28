@@ -160,11 +160,11 @@ public class BeeHive : Buyable
 
         int life = this.currentLife - 1;
 
-        int x = width * life / (this.life);
+        int x = width * life / this.life;
         int y = height * honey / maxHoney;
 
-        x = Mathf.Min(x, width);
-        y = Mathf.Min(y, height);
+        x = Mathf.Min(x, width - 1);
+        y = Mathf.Min(y, height - 1);
 
         int index = x + y * width;
         if (index < 0 || index > hiveStates.Length - 1) return;

@@ -160,16 +160,15 @@ public class Robot : Buyable
     /// </summary>
     Vector2 FindValidPosition()
     {
-        var bounds = Map.Instance.SquareBound;
         Vector2 whereToSpawn;
-
+        var bounds = Map.Instance.Bounds(transform.position);
         for (int _ = 0; _ < 1000; _++)
         {
             float x = Random.Range(bounds.min.x, bounds.max.x);
             float y = Random.Range(bounds.min.y, bounds.max.y);
             whereToSpawn = new Vector2(x, y);
 
-            if (!Map.Instance.Contains(whereToSpawn)) continue;
+            if (!bounds.Contains(whereToSpawn)) continue;
             if (Physics2D.OverlapPoint(whereToSpawn)) continue;
             return whereToSpawn;
         }
@@ -181,10 +180,10 @@ public class Robot : Buyable
 
         var bound = Map.Instance.Bounds(Vector2Int.RoundToInt(transform.position));
 
-        var vect = new Vector2(bound.min.x, transform.position.y);
-        vect = getCloser(new Vector2(bound.max.x, transform.position.y), vect);
-        vect = getCloser(new Vector2(transform.position.x, bound.min.y), vect);
-        vect = getCloser(new Vector2(transform.position.x, bound.max.x), vect);
+        var vect = new Vector2(bound.min.x + 1, transform.position.y);
+        vect = getCloser(new Vector2(bound.max.x - 1, transform.position.y), vect);
+        vect = getCloser(new Vector2(transform.position.x, bound.min.y + 1), vect);
+        vect = getCloser(new Vector2(transform.position.x, bound.max.x - 1), vect);
 
         var diff = (vect - (Vector2)transform.position);
         var dist = diff.magnitude;

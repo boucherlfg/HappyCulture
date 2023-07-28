@@ -65,7 +65,7 @@ public class AStar : Singleton<AStar>
 
             var node = notVisited[0];
             notVisited.RemoveAt(0);
-            if (node.pos == end)
+            if (Vector2.Distance(node.pos,end) < 1)
                 return BuildPath(node);
 
             visited.Add(node);
