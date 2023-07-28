@@ -74,6 +74,7 @@ public class Bee : MonoBehaviour
             if (badHoney)
             {
                 beehive.Hurt();
+                honey = 0;
             }
             beehive.AddHoney(honey);
             beehive.beeCount--;

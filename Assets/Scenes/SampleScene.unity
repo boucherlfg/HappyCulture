@@ -2569,7 +2569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 84.32126, y: -1004.2598}
+  m_AnchoredPosition: {x: 84.32126, y: -917.4448}
   m_SizeDelta: {x: 160, y: 1828.8896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &352728483
@@ -2622,7 +2622,7 @@ MonoBehaviour:
     want one of your item anymore, you can also throw it in the trash. \n\nDropping
     an item from your inventory to the trash will return the item back to your inventory.\n\n<b><size=15>Buy
     and Place</size></b>\r\n\r\nYou can buy stuff from the market in exchange for
-    honey. \rKee in mind that you can only see items that you are (or have been)
+    honey. \n\nKeep in mind that you can only see items that you are (or have been)
     able to buy. This means that <b>some objects are hidden</b> :O\n\r\nOnce you
     have bought what you need, You will be able to drag it to the field. Once you
     have found a suitable position, left click, and the item will be placed. \n\n<b><size=15>Real
