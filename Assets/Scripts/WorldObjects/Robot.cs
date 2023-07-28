@@ -83,13 +83,13 @@ public class Robot : Buyable
     {
         hiveCooldownTimer += Time.deltaTime;
         var rand = GetVectorTowards(target);
-        var avoid = GetAvoidanceVector();
+        var avoid = Vector2.zero;//GetAvoidanceVector();
         rbody.velocity = (rand + avoid).normalized * speed;
 
+        var bounds = Map.Instance.Bounds(transform.position);
         //chercher pour des trash
-        var trashes = Physics2D.OverlapCircleAll(transform.position, 10)
-                               .Where(x => x.GetComponent<Trash>())
-                               .Select(x => x.GetComponent<Trash>());
+        var hits = Physics2D.OverlapAreaAll(bounds.min, bounds.max).ToList();
+        var trashes = hits.FindAll(x => x.GetComponent<Trash>());
 
         if (trashes.Count() > 0)
         {
@@ -102,15 +102,13 @@ public class Robot : Buyable
         {
             hiveCooldownTimer = 0;
             //chercher pour des hives
-            var hiveObjs = Physics2D.OverlapCircleAll(transform.position, 10).ToList();
-            hiveObjs = hiveObjs.FindAll(x => x.GetComponent<BeeHive>() && x.GetComponent<BeeHive>().FillRatio >= 0.5f);
-            var hives = hiveObjs.Select(x => x.GetComponent<BeeHive>());
+            var hiveObjs = hits.FindAll(x => x.GetComponent<BeeHive>() && x.GetComponent<BeeHive>().FillRatio >= 0.5f);
 
-            if (hives.Count() > 0)
+            if (hiveObjs.Count() > 0)
             {
                 var pos = transform.position;
                 float dist(Vector2 other) => Vector2.Distance(pos, other);
-                target = hives.Minimum(x => dist(x.transform.position)).transform.position;
+                target = hiveObjs.Minimum(x => dist(x.transform.position)).transform.position;
                 foundTarget = true;
             }
         }
@@ -118,7 +116,7 @@ public class Robot : Buyable
     void MoveTowards()
     {
         var dir = GetVectorTowards(target);
-        var avoid = GetAvoidanceVector();
+        var avoid = Vector2.zero;// GetAvoidanceVector();
         rbody.velocity = (dir + avoid).normalized * speed;
 
         abandonTimer += Time.deltaTime;
@@ -168,31 +166,31 @@ public class Robot : Buyable
             float y = Random.Range(bounds.min.y, bounds.max.y);
             whereToSpawn = new Vector2(x, y);
 
-            if (!bounds.Contains(whereToSpawn)) continue;
+            if (!Map.Instance.Contains(whereToSpawn)) continue;
             if (Physics2D.OverlapPoint(whereToSpawn)) continue;
             return whereToSpawn;
         }
         throw new System.Exception("cant find valid point");
     }
-    Vector2 GetAvoidanceVector()
-    {
-        Vector2 getCloser(Vector2 a, Vector2 b) => Vector2.Distance(a, transform.position) < Vector2.Distance(b, transform.position) ? a : b;
+    //Vector2 GetAvoidanceVector()
+    //{
+    //    Vector2 getCloser(Vector2 a, Vector2 b) => Vector2.Distance(a, transform.position) < Vector2.Distance(b, transform.position) ? a : b;
 
-        var bound = Map.Instance.Bounds(Vector2Int.RoundToInt(transform.position));
+    //    var bound = Map.Instance.Bounds(Vector2Int.RoundToInt(transform.position));
 
-        var vect = new Vector2(bound.min.x + 1, transform.position.y);
-        vect = getCloser(new Vector2(bound.max.x - 1, transform.position.y), vect);
-        vect = getCloser(new Vector2(transform.position.x, bound.min.y + 1), vect);
-        vect = getCloser(new Vector2(transform.position.x, bound.max.x - 1), vect);
+    //    var vect = new Vector2(bound.min.x + 1, transform.position.y);
+    //    vect = getCloser(new Vector2(bound.max.x - 1, transform.position.y), vect);
+    //    vect = getCloser(new Vector2(transform.position.x, bound.min.y + 1), vect);
+    //    vect = getCloser(new Vector2(transform.position.x, bound.max.x - 1), vect);
 
-        var diff = (vect - (Vector2)transform.position);
-        var dist = diff.magnitude;
+    //    var diff = (vect - (Vector2)transform.position);
+    //    var dist = diff.magnitude;
 
-        var effect = wallDetection - dist;
-        if (effect < 0) return Vector2.zero;
+    //    var effect = wallDetection - dist;
+    //    if (effect < 0) return Vector2.zero;
 
-        return -diff.normalized * effect;
-    }
+    //    return -diff.normalized * effect;
+    //}
     Vector2 GetVectorTowards(Vector2 target)
     {
         var diff = target - (Vector2)transform.position;
