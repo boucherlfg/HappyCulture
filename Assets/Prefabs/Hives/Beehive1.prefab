@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freeOnFirstBuy: 1
-  price: 150
+  price: 200
   unlockConditions: []
   life: 3
   hiveStates:

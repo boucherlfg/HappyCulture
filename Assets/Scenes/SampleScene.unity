@@ -2599,9 +2599,8 @@ MonoBehaviour:
     an object to place it.\n\n- <b>Hold middle click</b> to drag camera around\r\n\n-
     <b>Scroll mouse</b> to zoom in and out\r\n\n- See <b>Buy and place</b> and <b>Trashcan</b>
     for additional controls\r\n\r\n<b><size=15>Your cellphone</b></size>\r\n\r\nEverything
-    important lies in the cellphone. There are 7 main applications you can access
+    important lies in the cellphone. There are 6 main applications you can access
     from there : \r\n\r\n- <b>Shop</b> where you can buy fancy flowers and new beehives.\r\n\n-
-    <b>Inventory</b> where all your items lie, waiting to be placed in the world.\r\n\n-
     <b>Real estate market</b> where you can buy more terrain.\r\n\n- <b>The Wiki</b>
     where you can find various information about the game.\r\n\n- <b>Settings</b>
     where you can change the behaviour of some aspects of the game.\n\n- <b>Stats
@@ -2623,19 +2622,17 @@ MonoBehaviour:
     want one of your item anymore, you can also throw it in the trash. \n\nDropping
     an item from your inventory to the trash will return the item back to your inventory.\n\n<b><size=15>Buy
     and Place</size></b>\r\n\r\nYou can buy stuff from the market in exchange for
-    honey. \r\n\r\nOnce you have bought what you need, exit the shop with the back
-    arrow, and go to your inventory. You will be able to see your newly aquired items
-    there. \r\n\r\nYou'll then probably want to place stuff in the field. In order
-    to do so, \n\n1. Click on the item you want to take from your inventory\n\n2.
-    Drag it to the position where you want it to be\n\n3. Left click again in order
-    to place the item.\n\r\n<b><size=15>Real estate</size></b>\r\n\r\nYou can buy
-    more terrain from the real estate application on your phone. Beware : the more
-    terrain you buy, the more expensive new terrains will be.\r\n\r\nOnce you buy
-    a new terrain, you'll se that a 10x10 square of grass will be added to the map
-    in a random place. Use it as you will, but preferably to grow your bee empire!\r\n\r\n<b>Final
-    word</b>\r\n\r\nIf you have any more questions, don't hesitate to contact me
-    at my email address : \r\n\r\nboucherlfg@gmail.com\r\n\r\nTruely yours, \r\n\r\nFelix
-    and Lolita"
+    honey. \rKee in mind that you can only see items that you are (or have been)
+    able to buy. This means that <b>some objects are hidden</b> :O\n\r\nOnce you
+    have bought what you need, You will be able to drag it to the field. Once you
+    have found a suitable position, left click, and the item will be placed. \n\n<b><size=15>Real
+    estate</size></b>\r\n\r\nYou can buy more terrain from the real estate application
+    on your phone. Beware : the more terrain you buy, the more expensive new terrains
+    will be.\r\n\r\nOnce you buy a new terrain, you'll se that a 10x10 square of
+    grass will be added to the map in a random place. Use it as you will, but preferably
+    to grow your bee empire!\r\n\r\n<b>Final word</b>\r\n\r\nIf you have any more
+    questions, don't hesitate to contact me at my email address : \r\n\r\nboucherlfg@gmail.com\r\n\r\nTruely
+    yours, \r\n\r\nFelix and Lolita"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

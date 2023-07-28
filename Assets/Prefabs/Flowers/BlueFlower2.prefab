@@ -98,10 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f146597c893f140a77d6aa93e29b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeOnFirstBuy: 0
   price: 100
   unlockConditions: []
   pollen: 3
-  lifetime: 200
+  lifetime: 300
   flowerType: 0
 --- !u!58 &3727880068391513654
 CircleCollider2D:

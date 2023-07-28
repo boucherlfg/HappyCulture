@@ -114,7 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf3efafe0b48c0449c1e11aff3f7d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeOnFirstBuy: 0
   price: 0
+  unlockConditions: []
   pollen: 1
-  lifetime: 30
+  lifetime: 2
   flowerType: 0
