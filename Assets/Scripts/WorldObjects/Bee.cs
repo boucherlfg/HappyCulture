@@ -135,7 +135,8 @@ public class Bee : MonoBehaviour
         var avoid = GetAvoidanceVector();
         rbody.velocity = (rand + avoid).normalized * speed;
 
-        var flowers = Physics2D.OverlapCircleAll(transform.position, 10)
+        var bounds = Map.Instance.Bounds(transform.position);
+        var flowers = Physics2D.OverlapAreaAll(bounds.min, bounds.max)
                                .Where(x => x.GetComponent<Flower>())
                                .Select(x => x.GetComponent<Flower>()).ToList();
         flowers = flowers.FindAll(x => x.IsFlowerOk(flowerType));

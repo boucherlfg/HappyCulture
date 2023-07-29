@@ -12,6 +12,7 @@ public class CameraControl : MonoBehaviour
 
     private Vector3 dragOrigin;
     private Camera mainCam;
+    int lastButtonPressed;
     void Start()
     {
         mainCam = Camera.main;
@@ -25,13 +26,22 @@ public class CameraControl : MonoBehaviour
         mainCam.orthographicSize = Mathf.Max(zoomMin, mainCam.orthographicSize);
         mainCam.orthographicSize = Mathf.Min(zoomMax, mainCam.orthographicSize);
 
-        if (Input.GetMouseButtonDown(2))
+        var right = Input.GetMouseButtonDown(1);
+        var mid = Input.GetMouseButtonDown(2);
+        if (lastButtonPressed < 0 && (mid || right))
         {
+            if (right) lastButtonPressed = 1;
+            else if (mid) lastButtonPressed = 2;
+
             dragOrigin = Input.mousePosition;
             return;
         }
 
-        if (!Input.GetMouseButton(2)) return;
+        if (!Input.GetMouseButton(1) && !Input.GetMouseButton(2))
+        {
+            lastButtonPressed = -1;
+            return;
+        }
 
         Vector2 pos = mainCam.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
         Vector2 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed);

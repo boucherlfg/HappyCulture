@@ -118,5 +118,5 @@ MonoBehaviour:
   price: 0
   unlockConditions: []
   pollen: 1
-  lifetime: 2
+  lifetime: 5
   flowerType: 0

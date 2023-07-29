@@ -17,7 +17,7 @@ public class GameOverScreen : MonoBehaviour
     private void CheckForGameOver()
     {
         //no hives left
-        bool noHivesLeft = Stats.Instance[Stats.Name.CurrentHive] <= 0;
+        bool noHivesLeft = FindObjectsOfType<BeeHive>().Length <= 0;
         //can't buy new hives
         bool cannotBuyHives = Shop.Instance.itemsWithPrice.FindAll(x => x.GetComponent<BeeHive>())
                                                           .TrueForAll(x => x.Price > Inventory.Instance.Honey);

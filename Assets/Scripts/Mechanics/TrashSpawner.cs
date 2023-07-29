@@ -40,7 +40,7 @@ public class TrashSpawner : MonoBehaviour
             whereToSpawn = new Vector2(x, y);
 
             if (!Map.Instance.Contains(whereToSpawn)) continue;
-            if (Physics2D.OverlapPoint(whereToSpawn)) continue;
+            if (Physics2D.OverlapCircle(whereToSpawn, 1)) continue;
             return whereToSpawn;
         }
         throw new System.Exception("cant find valid point");
