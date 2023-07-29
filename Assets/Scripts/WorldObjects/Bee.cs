@@ -41,6 +41,8 @@ public class Bee : MonoBehaviour
     public GameObject pollenEffect;
     private int honey;
     private FlowerType flowerType;
+    [SerializeField]
+    private float flowerDetectionRange = 10;
     [System.Serializable]
     public struct FlowerAuraPair
     {
@@ -128,9 +130,11 @@ public class Bee : MonoBehaviour
         dirX = rbody.velocity.x;
     }
 
-    #region AI methods
-    void Scout()
-    {
+#region AI methods
+void Scout()
+{
+        float dist(Vector2 other) => Vector2.Distance(transform.position, other);
+
         var rand = GetRandomVector();
         var avoid = GetAvoidanceVector();
         rbody.velocity = (rand + avoid).normalized * speed;
@@ -139,12 +143,10 @@ public class Bee : MonoBehaviour
         var flowers = Physics2D.OverlapAreaAll(bounds.min, bounds.max)
                                .Where(x => x.GetComponent<Flower>())
                                .Select(x => x.GetComponent<Flower>()).ToList();
-        flowers = flowers.FindAll(x => x.IsFlowerOk(flowerType));
+        flowers = flowers.FindAll(x => x.IsFlowerOk(flowerType) && dist(x.transform.position) < flowerDetectionRange);
 
         if (flowers.Count() > 0)
         {
-            var pos = transform.position;
-            float dist(Vector2 other) => Vector2.Distance(pos, other);
             target = flowers.Minimum(x => dist(x.transform.position));
         }
     }
@@ -164,8 +166,7 @@ public class Bee : MonoBehaviour
     {
         var rand = GetRandomVector() * 0.01f;
         var dir = GetVectorTowards(target.transform.position);
-        var avoid = GetAvoidanceVector();
-        rbody.velocity = (rand + dir + avoid).normalized * speed;
+        rbody.velocity = (rand + dir).normalized * speed;
     }
     void ReturnToBase()
     {

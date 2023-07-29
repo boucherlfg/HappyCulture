@@ -103,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 0.8, y: 0.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,19 +131,19 @@ MonoBehaviour:
     qty: 50
   flowers:
   - {fileID: 3727880068391513653, guid: 92f54485bef694249a0ef8351d706b87, type: 3}
-  - {fileID: 3727880068391513653, guid: ab4bca29a1c80f34b9854fa85cdfef7c, type: 3}
   - {fileID: 3727880068391513653, guid: 3a396d438da3fdf45b88d6f5ffdadb22, type: 3}
-  - {fileID: 3727880068391513653, guid: 3df8c1a2cab262047852f6451ab2e204, type: 3}
   - {fileID: 3727880068391513653, guid: 2647b531b7a07874a9f1f118335764a9, type: 3}
+  - {fileID: 3727880068391513653, guid: 3df8c1a2cab262047852f6451ab2e204, type: 3}
+  - {fileID: 3727880068391513653, guid: ab4bca29a1c80f34b9854fa85cdfef7c, type: 3}
+  - {fileID: 3727880068391513653, guid: 411b438c3edcedf4b833be934424b0af, type: 3}
   - {fileID: 3727880068391513653, guid: 5047e7794c7d453448a70cd4112b62bf, type: 3}
   - {fileID: 3727880068391513653, guid: f1a5fcce113df2c418e1dde76040f20f, type: 3}
-  - {fileID: 3727880068391513653, guid: 411b438c3edcedf4b833be934424b0af, type: 3}
   - {fileID: 3727880068391513653, guid: 4fbda377a94f5be4c99f452cb1beee68, type: 3}
   - {fileID: 3727880068391513653, guid: ca491ab3a13500c4c89d0b0c4dd03c29, type: 3}
-  - {fileID: 3727880068391513653, guid: 70cb0b1bc07468349bc9e89f84ad669c, type: 3}
+  - {fileID: 3727880068391513653, guid: 43c3f836ee4c22d468e7f4b206fa3ce4, type: 3}
   - {fileID: 3727880068391513653, guid: 0998ce24279a8e44c81aff73909c5e38, type: 3}
   - {fileID: 3727880068391513653, guid: 335f7964227f0f34a9bc32cfbbc40fae, type: 3}
-  - {fileID: 3727880068391513653, guid: 43c3f836ee4c22d468e7f4b206fa3ce4, type: 3}
   - {fileID: 3727880068391513653, guid: 315e81bd983622545973edcc9d5359da, type: 3}
+  - {fileID: 3727880068391513653, guid: 70cb0b1bc07468349bc9e89f84ad669c, type: 3}
   spawnInterval: 15
   flowerSpawnRange: 5

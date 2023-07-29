@@ -26,7 +26,7 @@ public class TerrainMenu : MonoBehaviour
     void Refresh()
     {
         int mapUpgrades = Map.Instance.MetamapSize;
-        price = (1 << mapUpgrades) * 100;
+        price = ((1 << (mapUpgrades - 1)) * 100) / 2;
         costLabel.text = "" + price;
         buyButton.interactable = price <= Inventory.Instance.Honey;
     }
