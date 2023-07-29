@@ -5,6 +5,7 @@ public class Trash : Flower
 {
     public bool BadHoney => true;
 
+    protected override void Start() { }
     public override bool IsFlowerOk(FlowerType toCheck)
     {
         return true;

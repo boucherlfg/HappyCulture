@@ -130,7 +130,7 @@ MonoBehaviour:
   price: 1000
   unlockConditions:
   - name: 0
-    qty: 50
+    qty: 15
   speed: 2
   turnSpeed: 3
   wallDetection: 1

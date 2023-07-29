@@ -15,7 +15,7 @@ public class Antenna : Buyable
         {
             var dist = Vector2.Distance(bee.transform.position, transform.position);
             if (dist >= range) continue;
-            bee.GetSpeedBoost(speedBoost);
+            bee.AddSpeedBoost(speedBoost);
             Debug.Log("boost given");
         }
     }

@@ -50,9 +50,9 @@ public class Bee : MonoBehaviour
     public List<FlowerAuraPair> flowerAuraPairs;
     #endregion
 
-    public void GetSpeedBoost(float multiplier)
+    public void AddSpeedBoost(float adder)
     {
-        speedBoost = multiplier;
+        speedBoost += adder;
     }
     // Start is called before the first frame update
     void Start()
@@ -86,7 +86,9 @@ public class Bee : MonoBehaviour
     void Update()
     {
         var regularSpeed = speed;
+        var regularTurnSpeed = turnSpeed;
         speed = regularSpeed * speedBoost;
+        turnSpeed = regularTurnSpeed * speedBoost;
         
         lifeTimeCounter += Time.deltaTime;
 
@@ -118,6 +120,7 @@ public class Bee : MonoBehaviour
 
         speedBoost = 1;
         speed = regularSpeed;
+        turnSpeed = regularTurnSpeed;
     }
     void Animate()
     {

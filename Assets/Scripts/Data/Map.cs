@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Map : MonoSingleton<Map>
 {
     public int MetamapSize => metaMap.Count;
-    private const int terrain_size = 10;
+    private const int terrain_size = 8;
     private List<Vector2Int> metaMap = new List<Vector2Int>();
     [SerializeField] private Tilemap tilemap;
 
@@ -40,14 +40,7 @@ public class Map : MonoSingleton<Map>
     public Bounds SquareBound => tilemap.localBounds;
     public bool Contains(Vector3 pos)
     {
-        for (int i = -1; i <= 1; i++)
-        {
-            for (int j = -1; j <= 1; j++)
-            {
-                if (!tilemap.GetTile(Vector3Int.RoundToInt(pos))) return false;
-            }
-        }
-        return true;
+        return tilemap.GetTile(Vector3Int.RoundToInt(pos));
     }
     void Start()
     {

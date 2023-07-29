@@ -13,7 +13,7 @@ public class Flower : Buyable
     public virtual bool IsFlowerOk(FlowerType toCheck) => flowerType == toCheck;
     // Update is called once per frame
 
-    void Start()
+    protected virtual void Start()
     {
         Stats.Instance[Stats.Name.FlowersPlaced]++;
         Stats.Instance[Stats.Name.CurrentFlowers]++;

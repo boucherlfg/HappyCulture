@@ -128,7 +128,7 @@ MonoBehaviour:
   price: 1000
   unlockConditions:
   - name: 1
-    qty: 200
+    qty: 50
   flowers:
   - {fileID: 3727880068391513653, guid: 92f54485bef694249a0ef8351d706b87, type: 3}
   - {fileID: 3727880068391513653, guid: ab4bca29a1c80f34b9854fa85cdfef7c, type: 3}
@@ -145,5 +145,5 @@ MonoBehaviour:
   - {fileID: 3727880068391513653, guid: 335f7964227f0f34a9bc32cfbbc40fae, type: 3}
   - {fileID: 3727880068391513653, guid: 43c3f836ee4c22d468e7f4b206fa3ce4, type: 3}
   - {fileID: 3727880068391513653, guid: 315e81bd983622545973edcc9d5359da, type: 3}
-  spawnInterval: 60
+  spawnInterval: 15
   flowerSpawnRange: 5
