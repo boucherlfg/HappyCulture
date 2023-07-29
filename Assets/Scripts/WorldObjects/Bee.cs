@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class Bee : MonoBehaviour
 {
+    private float oneOverE = 1/Mathf.Exp(1);
     public static List<Bee> all = new List<Bee>();
     #region [physics]
     private float speedBoost = 1;
@@ -89,8 +90,11 @@ public class Bee : MonoBehaviour
     {
         var regularSpeed = speed;
         var regularTurnSpeed = turnSpeed;
-        speed = regularSpeed * speedBoost;
-        turnSpeed = regularTurnSpeed * speedBoost;
+        var regularPollinateTime = pollinateTime;
+
+        speed = regularSpeed + regularSpeed * (speedBoost - 1);
+        turnSpeed = regularTurnSpeed + regularTurnSpeed * (speedBoost - 1) / 2;
+        pollinateTime = regularPollinateTime * (1/Mathf.Pow(speedBoost, oneOverE));
         
         lifeTimeCounter += Time.deltaTime;
 
@@ -123,6 +127,7 @@ public class Bee : MonoBehaviour
         speedBoost = 1;
         speed = regularSpeed;
         turnSpeed = regularTurnSpeed;
+        pollinateTime = regularPollinateTime;
     }
     void Animate()
     {

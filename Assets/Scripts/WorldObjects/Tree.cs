@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Tree : Buyable
 {
+    private float e = Mathf.Exp(1);
     public List<Flower> flowers;
     public float spawnInterval;
     private float spawnCounter;
@@ -28,7 +29,7 @@ public class Tree : Buyable
            flowers.Skip(flowerPartition).Take(flowerPartition),
            flowers.Skip(flowerPartition * 2).Take(flowerPartition),
         };
-        int flowerIndex = (int)(Mathf.Pow(Random.value, Mathf.Exp(1)) * flowerTiers.Count());
+        int flowerIndex = (int)(Mathf.Pow(Random.value, e) * flowerTiers.Count());
         var flower = flowerTiers.ElementAt(flowerIndex).PickRandom();
 
         var pos = Ext.FindValidPosition(transform.position, flowerSpawnRange);
