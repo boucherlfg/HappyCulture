@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class TerrainMenu : MonoBehaviour
 {
+    public GameObject available;
+    public GameObject unavailable;
     int price;
     public TMP_Text costLabel;
     public Button buyButton;
@@ -26,6 +28,12 @@ public class TerrainMenu : MonoBehaviour
     void Refresh()
     {
         int mapUpgrades = Map.Instance.MetamapSize;
+        //faire apparaitre la fenêtre de limite atteinte
+        if (mapUpgrades > Map.Instance.maxUpgradeCount)
+        {
+            unavailable.SetActive(true);
+            available.SetActive(false);
+        }
         price = ((1 << (mapUpgrades - 1)) * 100) / 2;
         costLabel.text = "" + price;
         buyButton.interactable = price <= Inventory.Instance.Honey;

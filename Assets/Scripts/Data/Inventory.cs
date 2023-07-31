@@ -14,7 +14,7 @@ public class Inventory : MonoSingleton<Inventory>, IEnumerable<InventoryItem>
         get => honey;
         set
         {
-            honey = Mathf.Min(99999, value);
+            honey = value;
             
             Changed?.Invoke();
         }

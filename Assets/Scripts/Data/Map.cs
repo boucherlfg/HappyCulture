@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Map : MonoSingleton<Map>
 {
+    public int maxUpgradeCount = 10;
     public int MetamapSize => metaMap.Count;
     private const int terrain_size = 8;
     private List<Vector2Int> metaMap = new List<Vector2Int>();

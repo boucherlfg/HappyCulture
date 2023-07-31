@@ -27,9 +27,6 @@ public class Robot : Buyable
     public float abandonTime = 10;
     private float abandonTimer;
     private bool foundTarget;
-
-    public float hiveCooldown = 60;
-    private float hiveCooldownTimer;
     private bool interacting => Vector2.Distance(target, transform.position) < 0.5
                              && interactTimeCounter < interactTime;
     
@@ -81,7 +78,6 @@ public class Robot : Buyable
     
     void Scout()
     {
-        hiveCooldownTimer += Time.deltaTime;
         var rand = GetVectorTowards(target);
         var avoid = Vector2.zero;//GetAvoidanceVector();
         rbody.velocity = (rand + avoid).normalized * speed;
@@ -98,11 +94,10 @@ public class Robot : Buyable
             target = trashes.Minimum(x => dist(x.transform.position)).transform.position;
             foundTarget = true;
         }
-        else if(hiveCooldownTimer > hiveCooldown)
+        else 
         {
-            hiveCooldownTimer = 0;
             //chercher pour des hives
-            var hiveObjs = hits.FindAll(x => x.GetComponent<BeeHive>() && x.GetComponent<BeeHive>().FillRatio >= 0.5f);
+            var hiveObjs = hits.FindAll(x => x.GetComponent<BeeHive>() && x.GetComponent<BeeHive>().FillRatio > 0.25f);
 
             if (hiveObjs.Count() > 0)
             {

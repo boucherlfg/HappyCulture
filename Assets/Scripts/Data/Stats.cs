@@ -67,7 +67,7 @@ public class Stats : MonoSingleton<Stats>
         get => values[name];
         set
         {
-            values[name] = Mathf.Min(value, 99999);
+            values[name] = value;
             Changed?.Invoke();
         }
     }

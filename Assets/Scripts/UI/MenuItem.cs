@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MenuItem : MonoBehaviour
+public class MenuItem : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField]
     private TMP_Text label;
@@ -41,9 +42,15 @@ public class MenuItem : MonoBehaviour
         var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         MouseControl.Instance.Drag(Prefab, position);
+        PlaySound();
     }
     public void PlaySound()
     {
         Sound.Instance.PlayOnce(clickSound);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Place();
     }
 }
